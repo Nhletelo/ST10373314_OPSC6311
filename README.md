@@ -9,38 +9,49 @@
 Key Features
 
 
-✅ Secure Sign Up & Login
-Users can create an account and log in securely to protect and access their financial data at any time.
+Sure! Here's a simplified and easy-to-understand explanation for each point:
 
-✅ Expense Tracking
-Manually record daily expenses by entering the amount, date, and description.
+---
 
-✅ Custom Categories
-Organize your spending into personalized categories like groceries, transport, or school fees.
+### ✅ **Features of CoinWatch (Simple Explanation)**
 
-✅ Monthly Budget Goals
-Set limits for each category and receive alerts when you're nearing or exceeding your budget.
+* **Secure Sign Up & Login**
+  You can create an account and log in safely, so only you can see your money details.
 
-✅ Visual Reports
-View clear bar graphs and summaries that show where your money goes and how you’re doing over time.
+* **Expense Tracking**
+  Add your daily spending by typing in how much you spent, when, and why.
 
-✅ Attach Receipts
-Upload photos of receipts to keep track of purchases and add proof to your entries.
+* **Custom Categories**
+  Group your expenses into types like food, transport, or school fees to stay organized.
 
-✅ Find Nearby ATMs
-Use an interactive map to locate the nearest ATMs within 5km, complete with fee info.
+* **Monthly Budget Goals**
+  Set a spending limit for each category. The app warns you when you're close to the limit.
 
-✅ Financial Progress & Rewards
-Stay motivated with progress badges and rewards for consistent tracking and meeting your goals.
+* **Visual Reports**
+  See easy-to-read charts and summaries showing where your money goes.
 
-✅ Real-Time Dashboard
-See your full financial status, including which categories have the highest spending and whether you're on budget.
+* **Attach Receipts**
+  Take or upload pictures of receipts to remember what you bought.
 
-✅ Private & Secure
-All data is encrypted and stored securely. Users can also export their reports in PDF format.
+* **Find Nearby ATMs**
+  Use the map to find ATMs near you, including info on any charges.
 
-✅ In-App Support Messaging
-Users can message the support team directly for financial help or technical issues.
+* **Financial Progress & Rewards**
+  Get badges and rewards when you regularly track your expenses and reach your money goals.
+
+* **Real-Time Dashboard**
+  Check your full financial status anytime—see which category you spend most on and if you're staying on budget.
+
+* **Private & Secure**
+  Your data is protected and encrypted. You can also save your reports as PDF files.
+
+* **In-App Support Messaging**
+  Send messages in the app to ask for help or report problems.
+
+---
+
+Would you like this as a document or part of your app's landing page text?
+
 
 ---
 
