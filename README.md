@@ -58,9 +58,4 @@ For a detailed overview, watch our demo video:
 
 
 
-* Nhluri Shilumani
-* Nhletelo Shilumani
-* Myson Masia
-* Nhlulo Baloyi 
 
----
