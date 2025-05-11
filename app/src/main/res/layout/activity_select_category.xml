@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SelectCategory">
+
+  <!-- Custom Category Title -->
+
+  <ImageButton
+      android:id="@+id/imageButton20"
+      android:layout_width="48dp"
+      android:layout_height="48dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="52dp"
+      android:background="@android:color/transparent"
+      android:contentDescription="Go back"
+      android:minWidth="48dp"
+      android:minHeight="48dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:srcCompat="@drawable/baseline_arrow_back_24" />
+
+  <TextView
+      android:id="@+id/textView20"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="68dp"
+      android:fontFamily="@font/poppins_semibold"
+      android:text="Custom Category"
+      android:textSize="25sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <!-- Category Name (Custom Input) -->
+  <EditText
+      android:id="@+id/editTextCategoryName"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="49dp"
+      android:layout_marginEnd="32dp"
+      android:backgroundTint="#FCF5FD"
+      android:ems="10"
+      android:inputType="text"
+      android:text="Enter custom category name"
+      android:textSize="20sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+  <!-- Category Image Upload -->
+  <ImageButton
+      android:id="@+id/imageButtonUpload"
+      android:layout_width="93dp"
+      android:layout_height="89dp"
+      android:layout_marginStart="43dp"
+      android:layout_marginTop="31dp"
+      android:layout_marginEnd="28dp"
+      android:background="@null"
+      android:contentDescription="@string/upload_an_image"
+      app:layout_constraintEnd_toStartOf="@+id/editTextCategoryName"
+      app:layout_constraintHorizontal_bias="0.428"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/textView20"
+      app:srcCompat="@drawable/up_loading" />
+
+  <!-- Color Picker for Custom Category -->
+  <LinearLayout
+      android:id="@+id/linearLayoutColor"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="240dp"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
+
+    <ImageButton
+        android:id="@+id/imageButtonColorPicker"
+        android:layout_width="73dp"
+        android:layout_height="65dp"
+        android:background="@null"
+        android:contentDescription="Color Palette"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/paint_palette" />
+
+    <!-- Spinner for selecting color -->
+    <Spinner
+        android:id="@+id/colourSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="65dp"
+        android:layout_gravity="center"
+        android:layout_marginEnd="20dp"
+        android:layout_weight="1"
+        android:background="#0446FD"
+        android:gravity="center"
+        android:spinnerMode="dialog"
+        android:textAlignment="center" />
+  </LinearLayout>
+  <!-- Add Save Category Button -->
+  <Button
+      android:id="@+id/btnSaveCategory"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="45dp"
+      android:text="Save Category"
+      android:backgroundTint="#0446FD"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.498"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/linearLayoutColor" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<View
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0446FD"
+    android:layout_gravity="center"
+    android:id="@+id/colourBlob"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Purple"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:id="@+id/colourNameBg"/>
+</RelativeLayout>

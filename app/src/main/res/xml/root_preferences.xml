@@ -1,0 +1,63 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <!-- User Profile Section -->
+    <Preference
+        android:key="profile"
+        android:title="User Profile"
+        android:summary="Manage your profile settings"
+        app:icon="@drawable/user"
+        android:enabled="false"/>
+        <!-- app:widgetLayout="@layout/profile_item" -->
+
+
+    <!-- General Settings -->
+    <PreferenceCategory android:title="General">
+
+        <SwitchPreferenceCompat
+            android:key="notifications"
+            android:title="Enable Notifications"
+            android:summary="Turn on/off notifications"
+            android:defaultValue="true"
+            app:icon="@drawable/baseline_circle_notifications_24"/>
+
+        <ListPreference
+            android:key="language"
+            android:title="App Language"
+            android:summary="Select your preferred language"
+            android:entries="@array/language_options"
+            android:entryValues="@array/language_values"
+            android:defaultValue="en"
+            app:icon="@drawable/language"/>
+    </PreferenceCategory>
+
+    <!-- Appearance Settings -->
+    <PreferenceCategory android:title="Appearance">
+
+        <SwitchPreferenceCompat
+            android:key="dark_mode"
+            android:title="Dark Mode"
+            android:summary="Enable dark theme"
+            android:defaultValue="false"
+            app:icon="@drawable/night_mode"/>
+    </PreferenceCategory>
+
+    <!-- Support -->
+    <PreferenceCategory android:title="Support">
+
+        <Preference
+            android:key="help"
+            android:title="Help &amp; Support"
+            android:summary="Get assistance or report a problem"
+            app:icon="@drawable/question"/>
+
+        <Preference
+            android:key="about"
+            android:title="About App"
+            android:summary="Version 1.0.0"
+            app:icon="@drawable/faq"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>
