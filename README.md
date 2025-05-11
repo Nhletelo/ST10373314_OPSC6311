@@ -1,6 +1,4 @@
-Sure! Here’s a **short and simple version** that anyone can understand quickly:
 
----
 
 ## **CoinWatch – Easy Budget Tracking App**
 
@@ -8,18 +6,50 @@ Sure! Here’s a **short and simple version** that anyone can understand quickly
 
 ---
 
-### **Main Features:**
+Key Features
+✅ Secure Sign Up & Login
+Users can create an account and log in securely to protect and access their financial data at any time.
 
-* **Add Expenses:** Enter how much you spent, when, and why.
-* **Budget Goals:** Set monthly limits so you don’t overspend.
-* **Categories:** Group your spending (like food, transport, etc.).
-* **Graphs:** See where your money goes using easy charts.
-* **Receipts:** Upload photos of your receipts.
-* **Rewards:** Earn points and badges for saving money.
-* **ATM Locator:** Find nearby ATMs with a map.
-* **Help Chat:** Message the support team if you need help.
+✅ Expense Tracking
+Manually record daily expenses by entering the amount, date, and description.
+
+✅ Custom Categories
+Organize your spending into personalized categories like groceries, transport, or school fees.
+
+✅ Monthly Budget Goals
+Set limits for each category and receive alerts when you're nearing or exceeding your budget.
+
+✅ Visual Reports
+View clear bar graphs and summaries that show where your money goes and how you’re doing over time.
+
+✅ Attach Receipts
+Upload photos of receipts to keep track of purchases and add proof to your entries.
+
+✅ Find Nearby ATMs
+Use an interactive map to locate the nearest ATMs within 5km, complete with fee info.
+
+✅ Financial Progress & Rewards
+Stay motivated with progress badges and rewards for consistent tracking and meeting your goals.
+
+✅ Real-Time Dashboard
+See your full financial status, including which categories have the highest spending and whether you're on budget.
+
+✅ Private & Secure
+All data is encrypted and stored securely. Users can also export their reports in PDF format.
+
+✅ In-App Support Messaging
+Users can message the support team directly for financial help or technical issues.
 
 ---
+
+Who Should Use CoinWatch?
+Students learning to budget
+
+Working professionals tracking income and expenses
+
+Families managing monthly household spending
+
+Anyone who wants better control over their finances
 
 ### 📽️ **Watch Demo Video:**
 
@@ -27,4 +57,4 @@ Sure! Here’s a **short and simple version** that anyone can understand quickly
 
 ---
 
-Let me know if you'd like this version in PDF or poster format.
+
