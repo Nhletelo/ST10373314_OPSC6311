@@ -49,10 +49,7 @@
 * Families looking to control household spending
 * Anyone seeking to improve their financial management and budgeting skills
 
-### Demo Video:
 
-For a detailed overview, watch our demo video:
-*\[Insert YouTube link here]*
 
 ---
 
