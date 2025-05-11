@@ -7,6 +7,8 @@
 ---
 
 Key Features
+
+
 ✅ Secure Sign Up & Login
 Users can create an account and log in securely to protect and access their financial data at any time.
 
