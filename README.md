@@ -1,5 +1,5 @@
 
-## CoinWatch – Simple and Efficient Budget Tracking App
+## CoinWatch 
 
 **CoinWatch** is a user-friendly budgeting app designed to help individuals track their expenses, set financial goals, and maintain control over their spending habits. This app provides a comprehensive solution for managing finances with ease, allowing users to stay organized and on budget.
 
@@ -56,7 +56,7 @@ For a detailed overview, watch our demo video:
 
 ---
 
-Developed by: 
+
 
 * Nhluri Shilumani
 * Nhletelo Shilumani
