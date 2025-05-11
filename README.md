@@ -1,73 +1,66 @@
 
+## CoinWatch – Simple and Efficient Budget Tracking App
 
-## **CoinWatch – Easy Budget Tracking App**
-
-**CoinWatch** is a simple app that helps you manage your money. You can track how much you spend, set savings goals, and stay within your budget.
-
----
-
-Key Features
-
-
-Sure! Here's a simplified and easy-to-understand explanation for each point:
+**CoinWatch** is a user-friendly budgeting app designed to help individuals track their expenses, set financial goals, and maintain control over their spending habits. This app provides a comprehensive solution for managing finances with ease, allowing users to stay organized and on budget.
 
 ---
 
-### ✅ **Features of CoinWatch (Simple Explanation)**
+### Key Features
 
 * **Secure Sign Up & Login**
-  You can create an account and log in safely, so only you can see your money details.
+  Users can securely create an account and log in to protect their financial data. Only authorized users can access their personal information.
 
 * **Expense Tracking**
-  Add your daily spending by typing in how much you spent, when, and why.
+  CoinWatch enables users to manually record their daily expenses, entering the amount, date, and description of each transaction for easy tracking.
 
 * **Custom Categories**
-  Group your expenses into types like food, transport, or school fees to stay organized.
+  Users can create and manage personalized categories such as groceries, transport, and bills, allowing for better organization and analysis of their expenses.
 
 * **Monthly Budget Goals**
-  Set a spending limit for each category. The app warns you when you're close to the limit.
+  The app allows users to set spending limits for each category. Notifications are sent when users are approaching or exceeding their set budget, ensuring they stay on track.
 
 * **Visual Reports**
-  See easy-to-read charts and summaries showing where your money goes.
+  CoinWatch generates clear visual reports, including bar graphs and summaries, to help users understand their spending trends and evaluate their financial progress over time.
 
 * **Attach Receipts**
-  Take or upload pictures of receipts to remember what you bought.
+  Users can attach photos of receipts to their expenses, providing a visual record of their purchases and supporting accurate tracking.
 
 * **Find Nearby ATMs**
-  Use the map to find ATMs near you, including info on any charges.
+  The app features an interactive map to help users locate ATMs within a 5km radius, including details on fees and availability.
 
 * **Financial Progress & Rewards**
-  Get badges and rewards when you regularly track your expenses and reach your money goals.
+  CoinWatch motivates users by offering badges and rewards for consistent tracking and meeting financial goals, promoting engagement and discipline.
 
 * **Real-Time Dashboard**
-  Check your full financial status anytime—see which category you spend most on and if you're staying on budget.
+  A dynamic dashboard presents users with a clear view of their financial status, including spending trends, category breakdowns, and whether they are staying within their budget.
 
 * **Private & Secure**
-  Your data is protected and encrypted. You can also save your reports as PDF files.
+  All user data is securely encrypted and stored. Users can also export their financial data in PDF format for additional security and record-keeping.
 
 * **In-App Support Messaging**
-  Send messages in the app to ask for help or report problems.
+  CoinWatch offers an integrated messaging system where users can reach out to customer support for assistance with financial management or technical issues.
 
 ---
 
-Would you like this as a document or part of your app's landing page text?
+### Who Should Use CoinWatch?
 
+* Students learning to manage their finances
+* Professionals tracking income and expenditures
+* Families looking to control household spending
+* Anyone seeking to improve their financial management and budgeting skills
 
----
+### Demo Video:
 
-Who Should Use CoinWatch?
-Students learning to budget
-
-Working professionals tracking income and expenses
-
-Families managing monthly household spending
-
-Anyone who wants better control over their finances
-
-### 📽️ **Watch Demo Video:**
-
-👉 *\[Insert YouTube link here]*
+For a detailed overview, watch our demo video:
+*\[Insert YouTube link here]*
 
 ---
 
+Developed by: 
 
+* Nhluri Shilumani
+* Nhletelo Shilumani
+* Myson Masia
+* Nhlulo Baloyi 
+
+---
