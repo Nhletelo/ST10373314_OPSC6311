@@ -1,3 +1,4 @@
+![ic_coinwatch_logo](https://github.com/user-attachments/assets/b597b35e-7bcb-4545-87d4-f7cbe195d512)
 
 ## CoinWatch 
 
