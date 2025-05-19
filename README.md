@@ -54,10 +54,14 @@
 
 ---
 Demonstration Videos 
+---
 
 https://youtu.be/LNMmBSm__UU?feature=shared
 
 ---
+📄 License
+This project is open source and available under the MIT License.
+
 
 
 
