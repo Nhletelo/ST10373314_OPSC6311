@@ -43,6 +43,7 @@ interface ExpenseDao
         val total: Double
     )
 
+
     @Update
     fun updateExpense(expense: Expense)
 

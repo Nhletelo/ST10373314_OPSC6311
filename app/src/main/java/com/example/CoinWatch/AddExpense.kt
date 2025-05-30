@@ -34,7 +34,7 @@ class AddExpense : AppCompatActivity() {
     private lateinit var filePickerLauncher: ActivityResultLauncher<Intent>
     private lateinit var fileNameDisplay: EditText
     private lateinit var binding: ActivityAddExpenseBinding
-    private lateinit var db: AppDatabase // Your RoomDB class
+    private lateinit var db: AppDatabase //  RoomDB class
     private lateinit var expenseDao: ExpenseDao
     private var capturedPhotoPath: String? = null
     lateinit var editTextDate: TextView

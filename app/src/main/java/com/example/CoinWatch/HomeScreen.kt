@@ -2,6 +2,7 @@ package com.example.CoinWatch
 
 import android.content.Intent
 import android.os.Bundle
+import android.graphics.Color
 import android.widget.Button
 import android.util.Log
 import android.widget.ImageButton
@@ -15,10 +16,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.*
+
 
 class HomeScreen : AppCompatActivity() {
-    private lateinit var db: AppDatabase // Your RoomDB class
+    private lateinit var db: AppDatabase
     private lateinit var expenseDao: ExpenseDao
     private lateinit var budgetGoalDao: BudgetGoalDao
 
@@ -67,17 +68,10 @@ class HomeScreen : AppCompatActivity() {
         }
 
 
-        val exploreButton = findViewById<Button>(R.id.button5)
-        exploreButton.setOnClickListener {
-            val intent = Intent(this, ExploreMoreActivity::class.java)
-            startActivity(intent)
-        }
-
-
-
         // Set up button listeners
         findViewById<ImageButton>(R.id.imageButton3).setOnClickListener {
             // Home screen action is redundant since we're already here
+            highlightSelectedButton(R.id.imageButton3)
         }
         findViewById<ImageButton>(R.id.imageButton21).setOnClickListener {
             startActivity(Intent(this, SetupBudget::class.java))
@@ -86,17 +80,27 @@ class HomeScreen : AppCompatActivity() {
             startActivity(Intent(this, BudgetGoalSetup::class.java))
         }
         findViewById<ImageButton>(R.id.imageButton4).setOnClickListener {
+            highlightSelectedButton(R.id.imageButton4)
             startActivity(Intent(this, Transactions::class.java))
         }
         findViewById<ImageButton>(R.id.imageButton5).setOnClickListener {
+            highlightSelectedButton(R.id.imageButton5)
             startActivity(Intent(this, AddExpense::class.java))
+
         }
         findViewById<ImageButton>(R.id.imageButton6).setOnClickListener {
+            highlightSelectedButton(R.id.imageButton6)
             startActivity(Intent(this, Chart::class.java))
         }
         findViewById<ImageButton>(R.id.imageButton7).setOnClickListener {
+            highlightSelectedButton(R.id.imageButton7)
             startActivity(Intent(this, SettingsActivity::class.java))
         }
+
+    findViewById<ImageButton>(R.id.imageButton8).setOnClickListener {
+        highlightSelectedButton(R.id.imageButton8)
+        startActivity(Intent(this, ExploreMoreActivity::class.java))
+    }
         val btnLocateATM = findViewById<ImageButton>(R.id.btnLocateATM)
         btnLocateATM.setOnClickListener {
             val intent = Intent(this, ATMLocatorActivity::class.java)
@@ -104,6 +108,22 @@ class HomeScreen : AppCompatActivity() {
         }
 
     }
+
+    private fun highlightSelectedButton(selectedButtonId: Int) {
+        val navButtons = listOf(
+            R.id.imageButton3,
+            R.id.imageButton4,
+            R.id.imageButton5,
+            R.id.imageButton6,
+            R.id.imageButton7
+        )
+
+        for (id in navButtons) {
+            val button = findViewById<ImageButton>(id)
+            button.isSelected = (id == selectedButtonId)
+        }
+    }
+
 
     override fun onResume() {
         super.onResume()

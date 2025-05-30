@@ -35,7 +35,7 @@ class ATMLocatorActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var atmBrandCheckBox: CheckBox
     private lateinit var searchBar: EditText
 
-    private val apiKey = "AIzaSyAOVYRIgupAurZup5y1PRh8Ismb1A3lLao"
+    private val apiKey = "AIzaSyA34DWpahjywSNLhB0uRLUbw8S2E0iZhdw"
     private val LOCATION_PERMISSION_REQUEST_CODE = 1
 
     private val banks = arrayOf("All Banks", "ABSA", "Standard Bank", "FNB", "Nedbank")
