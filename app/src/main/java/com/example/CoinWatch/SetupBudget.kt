@@ -40,7 +40,7 @@ class SetupBudget : AppCompatActivity() {
         }
 
         btnSave.setOnClickListener {
-            val sharedPref = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
+            val sharedPref = getSharedPreferences("MyAppPrefs", MODE_PRIVATE)
             val userId = sharedPref.getInt("USER_ID", -1)
 
             if (userId == -1) {

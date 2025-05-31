@@ -54,11 +54,11 @@ class HomeScreen : AppCompatActivity() {
             editor.apply()
         }
 
-        val balanceTextView = findViewById<TextView>(R.id.spentAmountTextView)
+        findViewById<TextView>(R.id.spentAmountTextView)
 
         if (userId != -1) {
             val db = AppDatabase.getDatabase(this)  // Ensure you have this method in your DB singleton
-            val budgetDao = db.budgetGoalDao()
+            db.budgetGoalDao()
             //val currentMonth = getCurrentMonth()
             //Log.d("HomeScreen", "Current Month: $currentMonth")  // Log current month
         }

@@ -48,7 +48,7 @@ class TransactionDetailsActivity : AppCompatActivity() {
             Glide.with(this)
                 .load(File(photoPath))
                 .placeholder(R.drawable.placeholder_image)
-                .error(R.drawable.error_image)
+                .error(R.drawable.gallery)
                 .into(photoImageView)
         } else {
             photoImageView.setImageResource(R.drawable.placeholder_image)

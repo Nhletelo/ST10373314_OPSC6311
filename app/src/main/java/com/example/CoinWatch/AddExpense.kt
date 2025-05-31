@@ -57,7 +57,7 @@ class AddExpense : AppCompatActivity() {
         val cameraProviderResult = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
-            if (it.resultCode == Activity.RESULT_OK && it.data != null) {
+            if (it.resultCode == RESULT_OK && it.data != null) {
                 val bitmap = it.data?.extras?.get("data") as? Bitmap
                 if (bitmap != null) {
                     binding.imgCameraImage.setImageBitmap(bitmap)
