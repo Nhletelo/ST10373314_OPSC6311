@@ -45,7 +45,6 @@ class BudgetGoalSetup : AppCompatActivity() {
 
         minGoalEditText = findViewById(R.id.editTextNumberDecimal2)
         maxGoalEditText = findViewById(R.id.editTextNumber)
-
         monthSpinner = findViewById(R.id.spinner_month)
 
         monthSpinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, months)
@@ -77,8 +76,8 @@ class BudgetGoalSetup : AppCompatActivity() {
             val maxGoal = maxGoalEditText.text.toString().toDoubleOrNull()
             val selectedMonth = monthSpinner.selectedItem.toString()
 
-            if (minGoal == null || maxGoal == null ) {
-                Toast.makeText(this, "Please fill in all fields correctly", Toast.LENGTH_SHORT).show()
+            if (minGoal == null || maxGoal == null || maxGoal < minGoal) {
+                Toast.makeText(this, "Enter valid minimum and maximum values", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -90,7 +89,6 @@ class BudgetGoalSetup : AppCompatActivity() {
                     val updatedGoal = existingGoal.copy(
                         minGoal = minGoal,
                         maxGoal = maxGoal
-                        //remainingBudget = budgetAmount
                     )
                     dao.updateGoal(updatedGoal)
                 } else {
@@ -102,20 +100,30 @@ class BudgetGoalSetup : AppCompatActivity() {
                     )
                     dao.insertGoal(newGoal)
                 }
-                // Switch back to the main thread to show toast
+
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@BudgetGoalSetup, "Budget has been updated successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@BudgetGoalSetup, "Budget updated successfully", Toast.LENGTH_SHORT).show()
+                    loadBudgetData(selectedMonth)
                 }
             }
         }
 
         btnReset.setOnClickListener {
-            minGoalEditText.text.clear()
-            maxGoalEditText.text.clear()
-            monthSpinner.setSelection(0)
-            progressBar.progress = 0
-            progressText.text = ""
-            Toast.makeText(this, "Budget has been cleared successfully", Toast.LENGTH_SHORT).show()
+            val selectedMonth = monthSpinner.selectedItem.toString()
+            CoroutineScope(Dispatchers.IO).launch {
+                val dao = db.budgetGoalDao()
+                val goal = dao.getBudgetByUserAndMonth(userId, selectedMonth)
+                if (goal != null) {
+                    dao.deleteGoal(goal)
+                }
+                withContext(Dispatchers.Main) {
+                    minGoalEditText.text.clear()
+                    maxGoalEditText.text.clear()
+                    progressBar.progress = 0
+                    progressText.text = ""
+                    Toast.makeText(this@BudgetGoalSetup, "Budget reset successfully", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
@@ -124,21 +132,18 @@ class BudgetGoalSetup : AppCompatActivity() {
             val goalDao = db.budgetGoalDao()
             val expenseDao = db.expenseDao()
             val goal = goalDao.getBudgetByUserAndMonth(userId, month)
-            val datePrefix = month  // month is already like "2025/04"
-            val totalExpenses = expenseDao.getTotalExpensesForMonth(userId, datePrefix) ?: 0.0
+            val totalExpenses = expenseDao.getTotalExpensesForMonth(userId, month) ?: 0.0
 
-
-            runOnUiThread {
+            withContext(Dispatchers.Main) {
                 if (goal != null) {
                     minGoalEditText.setText(goal.minGoal.toString())
                     maxGoalEditText.setText(goal.maxGoal.toString())
-
                     updateProgressBar(goal.minGoal, goal.maxGoal, totalExpenses)
                 } else {
                     minGoalEditText.setText("")
                     maxGoalEditText.setText("")
                     progressBar.progress = 0
-                    progressText.text = ""
+                    progressText.text = "No budget set"
                 }
             }
         }
@@ -154,5 +159,4 @@ class BudgetGoalSetup : AppCompatActivity() {
             progressText.text = "Invalid goal range"
         }
     }
-
 }
