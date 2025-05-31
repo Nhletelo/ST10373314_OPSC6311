@@ -146,6 +146,19 @@
         app:srcCompat="@drawable/open_book" />
 
     <ImageButton
+        android:id="@+id/logo"
+        android:layout_width="82dp"
+        android:layout_height="79dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="124dp"
+        android:background="@null"
+        android:contentDescription="User"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/face_scan" />
+
+
+    <ImageButton
         android:id="@+id/imageButton24"
         android:layout_width="82dp"
         android:layout_height="79dp"
