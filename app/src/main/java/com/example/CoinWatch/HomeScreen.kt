@@ -64,6 +64,7 @@ class HomeScreen : AppCompatActivity() {
         }
         findViewById<ImageButton>(R.id.imageButton29).setOnClickListener {
             val intent = Intent(this, SupportMessageActivity::class.java)
+            highlightSelectedButton(R.id.imageButton29)
             startActivity(intent)
         }
 
@@ -75,9 +76,11 @@ class HomeScreen : AppCompatActivity() {
         }
         findViewById<ImageButton>(R.id.imageButton21).setOnClickListener {
             startActivity(Intent(this, SetupBudget::class.java))
+            highlightSelectedButton(R.id.imageButton21)
         }
         findViewById<ImageButton>(R.id.imageButton22).setOnClickListener {
             startActivity(Intent(this, BudgetGoalSetup::class.java))
+            highlightSelectedButton(R.id.imageButton22)
         }
         findViewById<ImageButton>(R.id.imageButton4).setOnClickListener {
             highlightSelectedButton(R.id.imageButton4)
@@ -104,23 +107,34 @@ class HomeScreen : AppCompatActivity() {
         val btnLocateATM = findViewById<ImageButton>(R.id.btnLocateATM)
         btnLocateATM.setOnClickListener {
             val intent = Intent(this, ATMLocatorActivity::class.java)
+            highlightSelectedButton(R.id.btnLocateATM)
             startActivity(intent)
         }
 
     }
 
     private fun highlightSelectedButton(selectedButtonId: Int) {
-        val navButtons = listOf(
-            R.id.imageButton3,
-            R.id.imageButton4,
-            R.id.imageButton5,
-            R.id.imageButton6,
-            R.id.imageButton7
+        val buttons = listOf(
+            findViewById<ImageButton>(R.id.imageButton3),
+            findViewById<ImageButton>(R.id.imageButton4),
+            findViewById<ImageButton>(R.id.imageButton5),
+            findViewById<ImageButton>(R.id.imageButton6),
+            findViewById<ImageButton>(R.id.imageButton7),
+            findViewById<ImageButton>(R.id.imageButton8),
+            findViewById<ImageButton>(R.id.imageButton29),
+            findViewById<ImageButton>(R.id.imageButton22),
+            findViewById<ImageButton>(R.id.imageButton21),
+            findViewById<ImageButton>(R.id.btnLocateATM),
         )
 
-        for (id in navButtons) {
-            val button = findViewById<ImageButton>(id)
-            button.isSelected = (id == selectedButtonId)
+        for (button in buttons) {
+            if (button.id == selectedButtonId) {
+                // Apply highlight background (e.g., selected state)
+                button.setBackgroundResource(R.drawable.button_border_selected)
+            } else {
+                // Reset to default background
+                button.setBackgroundResource(R.drawable.button_border_default)
+            }
         }
     }
 

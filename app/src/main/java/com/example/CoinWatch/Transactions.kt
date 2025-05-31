@@ -50,10 +50,12 @@ class Transactions : AppCompatActivity() {
         val btnHome = findViewById<ImageButton>(R.id.imageButton13)
         btnHome.setOnClickListener {
             startActivity(Intent(this, HomeScreen::class.java))
+            highlightSelectedButton(R.id.imageButton13)
         }
 
         val btnTransact = findViewById<ImageButton>(R.id.imageButton14)
         btnTransact.setOnClickListener {
+            highlightSelectedButton(R.id.imageButton14)
             // Optional: Show a toast instead of restarting the same screen
         }
 
@@ -65,11 +67,13 @@ class Transactions : AppCompatActivity() {
         val btnChart = findViewById<ImageButton>(R.id.imageButton15)
         btnChart.setOnClickListener {
             startActivity(Intent(this, Chart::class.java))
+            highlightSelectedButton(R.id.imageButton15)
         }
 
         val btnMore = findViewById<ImageButton>(R.id.imageButton16)
         btnMore.setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java))
+            highlightSelectedButton(R.id.imageButton16)
         }
 
         // Check if permission is granted or not
@@ -228,11 +232,31 @@ class Transactions : AppCompatActivity() {
             if (::transactionAdapter.isInitialized) {
                 transactionAdapter.updateData(filtered)
             }
+
              // ✅ Calculate and update the total
             val totalAmount = filtered.sumOf { it.expense.amount }
             totalTextView.text = "Total: R${"%.2f".format(totalAmount)}"
         }
     }
+    private fun highlightSelectedButton(selectedButtonId: Int) {
+        val buttons = listOf(
+            findViewById<ImageButton>(R.id.imageButton13),
+            findViewById<ImageButton>(R.id.imageButton14),
+            findViewById<ImageButton>(R.id.imageButton15),
+            findViewById<ImageButton>(R.id.imageButton16)
+        )
+
+        for (button in buttons) {
+            if (button.id == selectedButtonId) {
+                // Apply highlight background (e.g., selected state)
+                button.setBackgroundResource(R.drawable.button_border_selected)
+            } else {
+                // Reset to default background
+                button.setBackgroundResource(R.drawable.button_border_default)
+            }
+        }
+    }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 

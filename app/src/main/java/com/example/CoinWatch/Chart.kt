@@ -50,33 +50,57 @@ class Chart : AppCompatActivity() {
 
         val btnHome = findViewById<ImageButton>(R.id.imageButton9)
         btnHome.setOnClickListener {
+            highlightSelectedButton(R.id.imageButton8)
             val intent = Intent(this, HomeScreen::class.java)
             startActivity(intent)
         }
 
         val btnTransact = findViewById<ImageButton>(R.id.imageButton10)
         btnTransact.setOnClickListener {
+            highlightSelectedButton(R.id.imageButton10)
             val intent = Intent(this, Transactions::class.java)
             startActivity(intent)
         }
 
         val btnFAB = findViewById<ImageButton>(R.id.imageButton8)
         btnFAB.setOnClickListener {
+            highlightSelectedButton(R.id.imageButton8)
             val intent = Intent(this, AddExpense::class.java)
             startActivity(intent)
         }
 
         val btnChart = findViewById<ImageButton>(R.id.imageButton11)
         btnChart.setOnClickListener {
+            highlightSelectedButton(R.id.imageButton11)
             val intent = Intent(this, Chart::class.java)
             startActivity(intent)
         }
 
         val btnMore = findViewById<ImageButton>(R.id.imageButton12)
         btnMore.setOnClickListener {
+            highlightSelectedButton(R.id.imageButton12)
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
 
+        }
+    }
+    private fun highlightSelectedButton(selectedButtonId: Int) {
+        val buttons = listOf(
+            findViewById<ImageButton>(R.id.imageButton8),
+            findViewById<ImageButton>(R.id.imageButton9),
+            findViewById<ImageButton>(R.id.imageButton10),
+            findViewById<ImageButton>(R.id.imageButton11),
+            findViewById<ImageButton>(R.id.imageButton12),
+        )
+
+        for (button in buttons) {
+            if (button.id == selectedButtonId) {
+                // Apply highlight background (e.g., selected state)
+                button.setBackgroundResource(R.drawable.button_border_selected)
+            } else {
+                // Reset to default background
+                button.setBackgroundResource(R.drawable.button_border_default)
+            }
         }
     }
     private fun setupChartView(data: List<ExpenseDao.CategoryExpenseTotal>) {
