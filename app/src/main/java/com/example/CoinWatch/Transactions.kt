@@ -53,6 +53,11 @@ class Transactions : AppCompatActivity() {
             highlightSelectedButton(R.id.imageButton13)
         }
 
+
+
+
+// Highlight the Transaction button on this screen by default
+        highlightSelectedButton(R.id.imageButton14)
         val btnTransact = findViewById<ImageButton>(R.id.imageButton14)
         btnTransact.setOnClickListener {
             highlightSelectedButton(R.id.imageButton14)

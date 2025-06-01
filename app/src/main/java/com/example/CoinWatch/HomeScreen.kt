@@ -70,6 +70,10 @@ class HomeScreen : AppCompatActivity() {
 
 
         // Set up button listeners
+
+// Highlight the Home button on this screen by default
+        highlightSelectedButton(R.id.imageButton3)
+
         findViewById<ImageButton>(R.id.imageButton3).setOnClickListener {
             // Home screen action is redundant since we're already here
             highlightSelectedButton(R.id.imageButton3)
@@ -124,7 +128,7 @@ class HomeScreen : AppCompatActivity() {
             findViewById<ImageButton>(R.id.imageButton29),
             findViewById<ImageButton>(R.id.imageButton22),
             findViewById<ImageButton>(R.id.imageButton21),
-            findViewById<ImageButton>(R.id.btnLocateATM),
+            findViewById<ImageButton>(R.id.btnLocateATM)
         )
 
         for (button in buttons) {

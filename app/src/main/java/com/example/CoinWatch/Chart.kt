@@ -69,11 +69,15 @@ class Chart : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+
+// Highlight the Chart button on this screen by default
+        highlightSelectedButton(R.id.imageButton11)
         val btnChart = findViewById<ImageButton>(R.id.imageButton11)
         btnChart.setOnClickListener {
+            // Chart screen action is redundant since we're already here
             highlightSelectedButton(R.id.imageButton11)
-            val intent = Intent(this, Chart::class.java)
-            startActivity(intent)
+
         }
 
         val btnMore = findViewById<ImageButton>(R.id.imageButton12)
