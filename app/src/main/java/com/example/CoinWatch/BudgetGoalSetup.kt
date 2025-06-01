@@ -83,7 +83,7 @@ class BudgetGoalSetup : AppCompatActivity() {
 
             CoroutineScope(Dispatchers.IO).launch {
                 val dao = db.budgetGoalDao()
-                val existingGoal = dao.getBudgetByUserAndMonth(userId, selectedMonth)
+                val existingGoal = dao.getBudgetForUserAndMonth(userId, selectedMonth)
 
                 if (existingGoal != null) {
                     val updatedGoal = existingGoal.copy(
@@ -112,7 +112,7 @@ class BudgetGoalSetup : AppCompatActivity() {
             val selectedMonth = monthSpinner.selectedItem.toString()
             CoroutineScope(Dispatchers.IO).launch {
                 val dao = db.budgetGoalDao()
-                val goal = dao.getBudgetByUserAndMonth(userId, selectedMonth)
+                val goal = dao.getBudgetForUserAndMonth(userId, selectedMonth)
                 if (goal != null) {
                     dao.deleteGoal(goal)
                 }
@@ -131,8 +131,9 @@ class BudgetGoalSetup : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             val goalDao = db.budgetGoalDao()
             val expenseDao = db.expenseDao()
-            val goal = goalDao.getBudgetByUserAndMonth(userId, month)
-            val totalExpenses = expenseDao.getTotalExpensesForMonth(userId, month) ?: 0.0
+            val goal = goalDao.getBudgetForUserAndMonth(userId, month)
+            val totalExpenses = expenseDao.getTotalExpensesForUserAndMonth(userId, month) ?: 0.0
+
 
             withContext(Dispatchers.Main) {
                 if (goal != null) {
