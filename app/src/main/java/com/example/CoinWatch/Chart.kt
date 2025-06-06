@@ -12,6 +12,7 @@ import com.anychart.AnyChartView
 import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.example.CoinWatch.data.AppDatabase
 import com.example.CoinWatch.data.ExpenseDao
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 import kotlinx.coroutines.launch
 
@@ -48,82 +49,60 @@ class Chart : AppCompatActivity() {
         anyChartView = findViewById(R.id.anyChartView)
         //setupChartView()
 
-        val btnHome = findViewById<ImageButton>(R.id.imageButton9)
-        btnHome.setOnClickListener {
-            highlightSelectedButton(R.id.imageButton8)
-            val intent = Intent(this, HomeScreen::class.java)
-            startActivity(intent)
-        }
+        // Set up bottom navigation
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bottomNav.selectedItemId = R.id.areachart // Highlight the current item
 
-        val btnTransact = findViewById<ImageButton>(R.id.imageButton10)
-        btnTransact.setOnClickListener {
-            highlightSelectedButton(R.id.imageButton10)
-            val intent = Intent(this, Transactions::class.java)
-            startActivity(intent)
-        }
+        bottomNav.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.homebutton -> {
+                    startActivity(Intent(this, HomeScreen::class.java))
+                    true
+                }
 
-        val btnFAB = findViewById<ImageButton>(R.id.imageButton8)
-        btnFAB.setOnClickListener {
-            highlightSelectedButton(R.id.imageButton8)
-            val intent = Intent(this, AddExpense::class.java)
-            startActivity(intent)
-        }
+                R.id.transact -> {
+                    startActivity(Intent(this, Transactions::class.java))
+                    true
+                }
 
+                R.id.areachart -> {
+                    // Already in Chart Layout
+                    true
+                }
 
+                R.id.expense -> {
+                    startActivity(Intent(this, AddExpense::class.java))
+                    true
+                }
 
-// Highlight the Chart button on this screen by default
-        highlightSelectedButton(R.id.imageButton11)
-        val btnChart = findViewById<ImageButton>(R.id.imageButton11)
-        btnChart.setOnClickListener {
-            // Chart screen action is redundant since we're already here
-            highlightSelectedButton(R.id.imageButton11)
+                R.id.messaging -> {
+                    startActivity(Intent(this, SupportMessageActivity::class.java))
+                    true
+                }
 
-        }
-
-        val btnMore = findViewById<ImageButton>(R.id.imageButton12)
-        btnMore.setOnClickListener {
-            highlightSelectedButton(R.id.imageButton12)
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
-
-        }
-    }
-    private fun highlightSelectedButton(selectedButtonId: Int) {
-        val buttons = listOf(
-            findViewById<ImageButton>(R.id.imageButton8),
-            findViewById<ImageButton>(R.id.imageButton9),
-            findViewById<ImageButton>(R.id.imageButton10),
-            findViewById<ImageButton>(R.id.imageButton11),
-            findViewById<ImageButton>(R.id.imageButton12),
-        )
-
-        for (button in buttons) {
-            if (button.id == selectedButtonId) {
-                // Apply highlight background (e.g., selected state)
-                button.setBackgroundResource(R.drawable.button_border_selected)
-            } else {
-                // Reset to default background
-                button.setBackgroundResource(R.drawable.button_border_default)
+                else -> false
             }
         }
     }
-    private fun setupChartView(data: List<ExpenseDao.CategoryExpenseTotal>) {
-        val pie = AnyChart.pie()
-        val dataEntries = data.map {
-            ValueDataEntry(it.category_name, it.total)
+
+        private fun setupChartView(data: List<ExpenseDao.CategoryExpenseTotal>) {
+            val pie = AnyChart.pie()
+            val dataEntries = data.map {
+                ValueDataEntry(it.category_name, it.total)
+            }
+
+            pie.data(dataEntries)
+            pie.title("Expenses by Category")
+            pie.labels().position("outside")
+            pie.legend().title().enabled(true)
+            pie.legend().title().text("Categories")
+            pie.legend().position("center-bottom")
+            pie.legend().itemsLayout("horizontal")
+            pie.legend().align("center")
+            pie.palette(arrayOf("#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"))
+
+            anyChartView.setChart(pie)
         }
-
-        pie.data(dataEntries)
-        pie.title("Expenses by Category")
-        pie.labels().position("outside")
-        pie.legend().title().enabled(true)
-        pie.legend().title().text("Categories")
-        pie.legend().position("center-bottom")
-        pie.legend().itemsLayout("horizontal")
-        pie.legend().align("center")
-        pie.palette(arrayOf("#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"))
-
-        anyChartView.setChart(pie)
     }
-}
+
 

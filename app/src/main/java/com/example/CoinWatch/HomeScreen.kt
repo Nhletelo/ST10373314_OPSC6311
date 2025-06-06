@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.CoinWatch.data.AppDatabase
 import com.example.CoinWatch.data.BudgetGoalDao
 import com.example.CoinWatch.data.ExpenseDao
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -63,21 +64,44 @@ class HomeScreen : AppCompatActivity() {
             //Log.d("HomeScreen", "Current Month: $currentMonth")  // Log current month
         }
         findViewById<ImageButton>(R.id.imageButton29).setOnClickListener {
-            val intent = Intent(this, SupportMessageActivity::class.java)
+            val intent = Intent(this, ExploreMoreActivity::class.java)
             highlightSelectedButton(R.id.imageButton29)
             startActivity(intent)
         }
 
 
         // Set up button listeners
+        //bottom navigation
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bottomNav.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.homebutton -> {
+                    // Already in Home
+                    true
+                }
+                R.id.transact -> {
+                    startActivity(Intent(this, Transactions::class.java))
+                    true
+                }
+                R.id.areachart -> {
+                    startActivity(Intent(this, Chart::class.java))
+                    true
+                }
+                R.id.expense -> {
+                    startActivity(Intent(this, AddExpense::class.java))
+                    true
+                }
 
-// Highlight the Home button on this screen by default
-        highlightSelectedButton(R.id.imageButton3)
 
-        findViewById<ImageButton>(R.id.imageButton3).setOnClickListener {
-            // Home screen action is redundant since we're already here
-            highlightSelectedButton(R.id.imageButton3)
+                R.id.messaging -> {
+                    startActivity(Intent(this, SupportMessageActivity::class.java))
+                    true
+                }
+                else -> false
+            }
         }
+
+
         findViewById<ImageButton>(R.id.imageButton21).setOnClickListener {
             startActivity(Intent(this, SetupBudget::class.java))
             highlightSelectedButton(R.id.imageButton21)
@@ -86,28 +110,8 @@ class HomeScreen : AppCompatActivity() {
             startActivity(Intent(this, BudgetGoalSetup::class.java))
             highlightSelectedButton(R.id.imageButton22)
         }
-        findViewById<ImageButton>(R.id.imageButton4).setOnClickListener {
-            highlightSelectedButton(R.id.imageButton4)
-            startActivity(Intent(this, Transactions::class.java))
-        }
-        findViewById<ImageButton>(R.id.imageButton5).setOnClickListener {
-            highlightSelectedButton(R.id.imageButton5)
-            startActivity(Intent(this, AddExpense::class.java))
 
-        }
-        findViewById<ImageButton>(R.id.imageButton6).setOnClickListener {
-            highlightSelectedButton(R.id.imageButton6)
-            startActivity(Intent(this, Chart::class.java))
-        }
-        findViewById<ImageButton>(R.id.imageButton7).setOnClickListener {
-            highlightSelectedButton(R.id.imageButton7)
-            startActivity(Intent(this, SettingsActivity::class.java))
-        }
 
-    findViewById<ImageButton>(R.id.imageButton8).setOnClickListener {
-        highlightSelectedButton(R.id.imageButton8)
-        startActivity(Intent(this, ExploreMoreActivity::class.java))
-    }
         val btnLocateATM = findViewById<ImageButton>(R.id.btnLocateATM)
         btnLocateATM.setOnClickListener {
             val intent = Intent(this, ATMLocatorActivity::class.java)
@@ -119,12 +123,8 @@ class HomeScreen : AppCompatActivity() {
 
     private fun highlightSelectedButton(selectedButtonId: Int) {
         val buttons = listOf(
-            findViewById<ImageButton>(R.id.imageButton3),
-            findViewById<ImageButton>(R.id.imageButton4),
-            findViewById<ImageButton>(R.id.imageButton5),
-            findViewById<ImageButton>(R.id.imageButton6),
-            findViewById<ImageButton>(R.id.imageButton7),
-            findViewById<ImageButton>(R.id.imageButton8),
+
+
             findViewById<ImageButton>(R.id.imageButton29),
             findViewById<ImageButton>(R.id.imageButton22),
             findViewById<ImageButton>(R.id.imageButton21),

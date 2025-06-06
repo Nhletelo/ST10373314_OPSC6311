@@ -28,6 +28,7 @@ import androidx.core.content.ContextCompat
 import android.Manifest
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class Transactions : AppCompatActivity() {
 
@@ -46,42 +47,39 @@ class Transactions : AppCompatActivity() {
 
         totalTextView = findViewById(R.id.totalTextView)
 
-        // ---- Navigation Buttons Setup ----
-        val btnHome = findViewById<ImageButton>(R.id.imageButton13)
-        btnHome.setOnClickListener {
-            startActivity(Intent(this, HomeScreen::class.java))
-            highlightSelectedButton(R.id.imageButton13)
+        // Set up bottom navigation
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bottomNav.selectedItemId = R.id.transact // Highlight the current item
+
+        bottomNav.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.homebutton -> {
+                    startActivity(Intent(this, HomeScreen::class.java))
+                    true
+                }
+                R.id.transact -> {
+                    // Already in Transaction Layout
+                    true
+                }
+                R.id.areachart -> {
+                    startActivity(Intent(this, Chart::class.java))
+                    true
+                }
+                R.id.expense -> {
+                    startActivity(Intent(this, AddExpense::class.java))
+                    true
+                }
+                R.id.messaging -> {
+                    startActivity(Intent(this, SupportMessageActivity::class.java))
+                    true
+                }
+                else -> false
+            }
         }
 
 
 
-
-// Highlight the Transaction button on this screen by default
-        highlightSelectedButton(R.id.imageButton14)
-        val btnTransact = findViewById<ImageButton>(R.id.imageButton14)
-        btnTransact.setOnClickListener {
-            highlightSelectedButton(R.id.imageButton14)
-            // Optional: Show a toast instead of restarting the same screen
-        }
-
-        val btnFAB = findViewById<ImageButton>(R.id.imageButton17)
-        btnFAB.setOnClickListener {
-            startActivity(Intent(this, AddExpense::class.java))
-        }
-
-        val btnChart = findViewById<ImageButton>(R.id.imageButton15)
-        btnChart.setOnClickListener {
-            startActivity(Intent(this, Chart::class.java))
-            highlightSelectedButton(R.id.imageButton15)
-        }
-
-        val btnMore = findViewById<ImageButton>(R.id.imageButton16)
-        btnMore.setOnClickListener {
-            startActivity(Intent(this, SettingsActivity::class.java))
-            highlightSelectedButton(R.id.imageButton16)
-        }
-
-        // Check if permission is granted or not
+    // Check if permission is granted or not
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
             != PackageManager.PERMISSION_GRANTED
         ) {
@@ -243,24 +241,7 @@ class Transactions : AppCompatActivity() {
             totalTextView.text = "Total: R${"%.2f".format(totalAmount)}"
         }
     }
-    private fun highlightSelectedButton(selectedButtonId: Int) {
-        val buttons = listOf(
-            findViewById<ImageButton>(R.id.imageButton13),
-            findViewById<ImageButton>(R.id.imageButton14),
-            findViewById<ImageButton>(R.id.imageButton15),
-            findViewById<ImageButton>(R.id.imageButton16)
-        )
 
-        for (button in buttons) {
-            if (button.id == selectedButtonId) {
-                // Apply highlight background (e.g., selected state)
-                button.setBackgroundResource(R.drawable.button_border_selected)
-            } else {
-                // Reset to default background
-                button.setBackgroundResource(R.drawable.button_border_default)
-            }
-        }
-    }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)

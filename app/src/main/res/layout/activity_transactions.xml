@@ -55,86 +55,31 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
 
-    <ImageButton
-        android:id="@+id/imageButton13"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="66dp"
-        android:background="@drawable/button_border_default"
-        android:contentDescription="Home"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/home" />
-
-    <ImageButton
-        android:id="@+id/imageButton14"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="66dp"
-        android:background="@drawable/button_border_default"
-        android:contentDescription="Transactions"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton13"
-        app:srcCompat="@drawable/pending" />
-
-    <ImageButton
-        android:id="@+id/imageButton15"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="66dp"
-        android:background="@drawable/button_border_default"
-        android:contentDescription="Chart"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton16"
-        app:srcCompat="@drawable/pie_chart" />
-
-    <ImageButton
-        android:id="@+id/imageButton16"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="66dp"
-        android:background="@drawable/button_border_default"
-        android:contentDescription="More Options"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/menu" />
-
-    <ImageButton
-        android:id="@+id/imageButton17"
-        android:layout_width="71dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="182dp"
-        android:layout_marginEnd="182dp"
-        android:layout_marginBottom="128dp"
-        android:background="@drawable/button_border_add_expense"
-        android:contentDescription="FAB"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/baseline_add_circle_24" />
-
     <TextView
         android:id="@+id/totalTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="20dp"
         android:padding="8dp"
         android:text="Total: R0.00"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton13"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton17"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/quantum_googred"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
