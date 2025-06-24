@@ -75,10 +75,6 @@ class Chart : AppCompatActivity() {
                     true
                 }
 
-                R.id.messaging -> {
-                    startActivity(Intent(this, SupportMessageActivity::class.java))
-                    true
-                }
 
                 else -> false
             }

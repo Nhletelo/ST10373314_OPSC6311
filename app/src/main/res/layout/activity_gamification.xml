@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/tvPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Points: 0"
+        android:textSize="24sp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tvLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Level: Beginner"
+        android:textSize="20sp"
+        android:layout_marginBottom="16dp" />
+
+    <ImageView
+        android:id="@+id/ivBadge"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:contentDescription="Badge"
+        android:src="@drawable/badge_none"
+        android:layout_marginBottom="24dp" />
+
+
+    <TextView
+        android:id="@+id/tvQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Question"
+        android:textSize="18sp"
+        android:layout_marginBottom="12dp" />
+
+    <RadioGroup
+        android:id="@+id/rgOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="16dp">
+
+        <RadioButton
+            android:id="@+id/rbOption1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Option 1" />
+        <RadioButton
+            android:id="@+id/rbOption2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Option 2" />
+        <RadioButton
+            android:id="@+id/rbOption3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Option 3" />
+        <RadioButton
+            android:id="@+id/rbOption4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Option 4" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit" />
+
+</LinearLayout>

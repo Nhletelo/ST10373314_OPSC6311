@@ -1,5 +1,6 @@
 package com.example.CoinWatch
 
+import android.adservices.topics.Topic
 import android.content.Intent
 import android.os.Bundle
 import android.graphics.Color
@@ -65,7 +66,6 @@ class HomeScreen : AppCompatActivity() {
         }
         findViewById<ImageButton>(R.id.imageButton29).setOnClickListener {
             val intent = Intent(this, ExploreMoreActivity::class.java)
-            highlightSelectedButton(R.id.imageButton29)
             startActivity(intent)
         }
 
@@ -92,11 +92,6 @@ class HomeScreen : AppCompatActivity() {
                     true
                 }
 
-
-                R.id.messaging -> {
-                    startActivity(Intent(this, SupportMessageActivity::class.java))
-                    true
-                }
                 else -> false
             }
         }
@@ -104,43 +99,26 @@ class HomeScreen : AppCompatActivity() {
 
         findViewById<ImageButton>(R.id.imageButton21).setOnClickListener {
             startActivity(Intent(this, SetupBudget::class.java))
-            highlightSelectedButton(R.id.imageButton21)
         }
         findViewById<ImageButton>(R.id.imageButton22).setOnClickListener {
             startActivity(Intent(this, BudgetGoalSetup::class.java))
-            highlightSelectedButton(R.id.imageButton22)
+        }
+        findViewById<ImageButton>(R.id.imageButton23).setOnClickListener {
+            startActivity(Intent(this, GamificationActivity::class.java))
+        }
+        findViewById<ImageButton>(R.id.imageButtonMessaging).setOnClickListener{
+            startActivity(Intent(this, SupportMessageActivity::class.java))
         }
 
 
         val btnLocateATM = findViewById<ImageButton>(R.id.btnLocateATM)
         btnLocateATM.setOnClickListener {
             val intent = Intent(this, ATMLocatorActivity::class.java)
-            highlightSelectedButton(R.id.btnLocateATM)
             startActivity(intent)
         }
 
     }
 
-    private fun highlightSelectedButton(selectedButtonId: Int) {
-        val buttons = listOf(
-
-
-            findViewById<ImageButton>(R.id.imageButton29),
-            findViewById<ImageButton>(R.id.imageButton22),
-            findViewById<ImageButton>(R.id.imageButton21),
-            findViewById<ImageButton>(R.id.btnLocateATM)
-        )
-
-        for (button in buttons) {
-            if (button.id == selectedButtonId) {
-                // Apply highlight background (e.g., selected state)
-                button.setBackgroundResource(R.drawable.button_border_selected)
-            } else {
-                // Reset to default background
-                button.setBackgroundResource(R.drawable.button_border_default)
-            }
-        }
-    }
 
 
     override fun onResume() {

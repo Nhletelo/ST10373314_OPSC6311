@@ -69,10 +69,8 @@ class Transactions : AppCompatActivity() {
                     startActivity(Intent(this, AddExpense::class.java))
                     true
                 }
-                R.id.messaging -> {
-                    startActivity(Intent(this, SupportMessageActivity::class.java))
-                    true
-                }
+
+
                 else -> false
             }
         }

@@ -1,183 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeScreen"
-    android:background="#FFFFFF"
-    tools:layout_editor_absoluteX="15dp"
-    tools:layout_editor_absoluteY="1dp">
+    android:background="@drawable/grey"
+    tools:context=".HomeScreen">
 
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="140dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="208dp"
-        android:text="Set Up Budget"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton21"
-        app:layout_constraintHorizontal_bias="0.738"
-        app:layout_constraintStart_toStartOf="@+id/imageButton21"
-        app:layout_constraintTop_toBottomOf="@+id/textView21" />
-
-    <TextView
-        android:id="@+id/textViewATM"
-        android:layout_width="136dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="332dp"
-        android:text="ATM Locator"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/btnLocateATM"
-        app:layout_constraintHorizontal_bias="0.594"
-        app:layout_constraintStart_toStartOf="@+id/btnLocateATM"
-        app:layout_constraintTop_toBottomOf="@+id/textView21" />
-
-
-    <TextView
-        android:id="@+id/textView26"
-        android:layout_width="138dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="4dp"
-        android:text="Budget Goals"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton22"
-        app:layout_constraintHorizontal_bias="0.391"
-        app:layout_constraintStart_toStartOf="@+id/imageButton22"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton22" />
-
+    <!-- Dashboard Title -->
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:fontFamily="@font/poppins_semibold"
         android:text="Dashboard"
+        android:fontFamily="@font/poppins_semibold"
         android:textSize="25sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="48dp" />
 
-
-    <ImageButton
-        android:id="@+id/logo"
-        android:layout_width="82dp"
-        android:layout_height="79dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="124dp"
-        android:background="@null"
-        android:contentDescription="User"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/face_scan" />
-
-
-    <ImageButton
-        android:id="@+id/imageButton24"
-        android:layout_width="82dp"
-        android:layout_height="79dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="124dp"
-        android:background="@null"
-        android:contentDescription="User"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/face_scan" />
-
+    <!-- Welcome Text -->
     <TextView
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="48dp"
         android:text="Welcome, User"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/imageButton24"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@id/textView9"
+        app:layout_constraintStart_toStartOf="@id/textView9"
+        app:layout_constraintEnd_toEndOf="@id/textView9"
+        android:layout_marginTop="24dp" />
 
-
-    <ImageButton
-        android:id="@+id/imageButton21"
-        android:layout_width="115dp"
-        android:layout_height="69dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="124dp"
-        android:layout_marginEnd="240dp"
-        android:background="@drawable/button_border_default"
-        android:contentDescription="Budget"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.272"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton24"
-        app:srcCompat="@drawable/money_wallet" />
-
-    <ImageButton
-        android:id="@+id/imageButton22"
-        android:layout_width="115dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="328dp"
-        android:layout_marginEnd="52dp"
-        android:background="@drawable/button_border_default"
-        android:contentDescription="Financial Goals"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icons_goal" />
-
-    <ImageButton
-        android:id="@+id/btnLocateATM"
-        android:layout_width="115dp"
-        android:layout_height="69dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="250dp"
-        android:background="@drawable/button_border_default"
-        android:contentDescription="Locate ATM"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton21"
-        app:srcCompat="@drawable/google_maps" />
-
-    <ImageButton
-        android:id="@+id/imageButton29"
-        android:layout_width="115dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/button_border_default"
-        app:layout_constraintEnd_toEndOf="@+id/textView26"
-        app:layout_constraintStart_toStartOf="@+id/textView26"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton22"
-        app:srcCompat="@drawable/explore" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Explore"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton29"
-        app:layout_constraintStart_toStartOf="@+id/imageButton29"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton29" />
-
-
+    <!-- Total Spent Card -->
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView21"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView21">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -197,25 +65,170 @@
                 android:id="@+id/spentAmountTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:text="R0.00"
                 android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginTop="8dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <!-- Create Budget Button -->
+    <ImageButton
+        android:id="@+id/imageButton21"
+        android:layout_width="115dp"
+        android:layout_height="85dp"
+        android:background="@drawable/button_border_selected"
+        android:contentDescription="Create Budget"
+        app:srcCompat="@drawable/settings"
+        app:layout_constraintTop_toBottomOf="@id/cardView"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="16dp" />
 
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Budget"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/imageButton21"
+        app:layout_constraintStart_toStartOf="@id/imageButton21"
+        app:layout_constraintEnd_toEndOf="@id/imageButton21"
+        android:layout_marginTop="4dp" />
+
+    <!-- Update Budget Button -->
+    <ImageButton
+        android:id="@+id/imageButton22"
+        android:layout_width="115dp"
+        android:layout_height="85dp"
+        android:background="@drawable/button_border_selected"
+        android:contentDescription="Update Budget"
+        app:srcCompat="@drawable/target"
+        app:layout_constraintTop_toBottomOf="@id/cardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="34dp"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Budget"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/imageButton22"
+        app:layout_constraintStart_toStartOf="@id/imageButton22"
+        app:layout_constraintEnd_toEndOf="@id/imageButton22"
+        android:layout_marginTop="4dp" />
+
+    <!-- Locate ATM -->
+    <ImageButton
+        android:id="@+id/btnLocateATM"
+        android:layout_width="115dp"
+        android:layout_height="85dp"
+        android:background="@drawable/button_border_selected"
+        android:contentDescription="Locate ATM"
+        app:srcCompat="@drawable/atm"
+        app:layout_constraintTop_toBottomOf="@id/textView16"
+        app:layout_constraintStart_toStartOf="@id/imageButton21"
+        android:layout_marginTop="24dp" />
+
+    <TextView
+        android:id="@+id/textViewATM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ATM Locator"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/btnLocateATM"
+        app:layout_constraintStart_toStartOf="@id/btnLocateATM"
+        app:layout_constraintEnd_toEndOf="@id/btnLocateATM"
+        android:layout_marginTop="4dp" />
+
+    <!-- Game -->
+    <ImageButton
+        android:id="@+id/imageButton23"
+        android:layout_width="115dp"
+        android:layout_height="85dp"
+        android:background="@drawable/button_border_selected"
+        android:contentDescription="Play Game"
+        app:srcCompat="@drawable/joystick"
+        app:layout_constraintTop_toBottomOf="@id/textView26"
+        app:layout_constraintEnd_toEndOf="@id/imageButton22"
+        android:layout_marginTop="24dp" />
+
+    <TextView
+        android:id="@+id/textViewquiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Game"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/imageButton23"
+        app:layout_constraintStart_toStartOf="@id/imageButton23"
+        app:layout_constraintEnd_toEndOf="@id/imageButton23"
+        android:layout_marginTop="4dp" />
+
+    <!-- Explore -->
+    <ImageButton
+        android:id="@+id/imageButton29"
+        android:layout_width="115dp"
+        android:layout_height="85dp"
+        android:background="@drawable/button_border_selected"
+        android:contentDescription="Explore"
+        app:srcCompat="@drawable/binocular"
+        app:layout_constraintTop_toBottomOf="@id/textViewATM"
+        app:layout_constraintEnd_toEndOf="@id/imageButton23"
+        android:layout_marginTop="24dp" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Explore"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/imageButton29"
+        app:layout_constraintStart_toStartOf="@id/imageButton29"
+        app:layout_constraintEnd_toEndOf="@id/imageButton29"
+        android:layout_marginTop="4dp" />
+
+    <!-- Contact Support -->
+    <ImageButton
+        android:id="@+id/imageButtonMessaging"
+        android:layout_width="115dp"
+        android:layout_height="85dp"
+        android:background="@drawable/button_border_selected"
+        android:contentDescription="Contact Support"
+        app:srcCompat="@drawable/email"
+        app:layout_constraintTop_toBottomOf="@id/textViewquiz"
+        app:layout_constraintStart_toStartOf="@id/btnLocateATM"
+        android:layout_marginTop="24dp" />
+
+    <TextView
+        android:id="@+id/textView110"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact Support"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/imageButtonMessaging"
+        app:layout_constraintStart_toStartOf="@id/imageButtonMessaging"
+        app:layout_constraintEnd_toEndOf="@id/imageButtonMessaging"
+        android:layout_marginTop="4dp" />
+
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/quantum_googred"
-        app:itemIconTint="@color/black"
-        app:itemTextColor="@color/white"
+        android:background="@color/quantum_white_100"
+        app:itemIconTint="@color/blue"
+        app:itemTextColor="@color/blue"
+        app:menu="@menu/bottom_nav_menu"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
-
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

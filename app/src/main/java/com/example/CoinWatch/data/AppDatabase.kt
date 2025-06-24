@@ -5,10 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [User::class, BudgetGoal::class, Expense::class, Category::class],
-    version = 6)
-
+@Database(
+    entities = [User::class, BudgetGoal::class, Expense::class, Category::class],
+    version = 6
+)
 abstract class AppDatabase : RoomDatabase() {
+
     abstract fun userDao(): UserDao
     abstract fun budgetGoalDao(): BudgetGoalDao
     abstract fun expenseDao(): ExpenseDao
@@ -22,9 +24,9 @@ abstract class AppDatabase : RoomDatabase() {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    AppDatabase::class.java, // <- This is the class name
+                    AppDatabase::class.java,
                     "budget_tracker_database"
-                ).fallbackToDestructiveMigration() // handles version upgrades
+                ).fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 instance

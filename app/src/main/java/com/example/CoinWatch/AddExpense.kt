@@ -12,7 +12,6 @@ import android.view.View
 import android.widget.*
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.CoinWatch.data.AppDatabase
@@ -25,34 +24,32 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
+import java.io.InputStream
 import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
+import java.util.*
 
 class AddExpense : AppCompatActivity() {
 
     private lateinit var filePickerLauncher: ActivityResultLauncher<Intent>
     private lateinit var fileNameDisplay: EditText
     private lateinit var binding: ActivityAddExpenseBinding
-    private lateinit var db: AppDatabase //  RoomDB class
+    private lateinit var db: AppDatabase
     private lateinit var expenseDao: ExpenseDao
     private var capturedPhotoPath: String? = null
+    private var uploadedFilePath: String? = null
     lateinit var editTextDate: TextView
     lateinit var btnShowDatePicker: Button
     private val calendar = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_add_expense)
+        binding = ActivityAddExpenseBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         db = AppDatabase.getDatabase(this)
         expenseDao = db.expenseDao()
 
-        binding = ActivityAddExpenseBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        // Camera setup and launcher
+        // Handle camera image
         val cameraProviderResult = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
@@ -80,8 +77,11 @@ class AddExpense : AppCompatActivity() {
         ) { result ->
             if (result.resultCode == RESULT_OK && result.data != null) {
                 val fileUri: Uri? = result.data?.data
-                val fileName = getFileName(fileUri)
-                fileNameDisplay.setText(fileName)
+                fileUri?.let {
+                    val fileName = getFileName(it)
+                    fileNameDisplay.setText(fileName)
+                    uploadedFilePath = saveSelectedFileToInternalStorage(it, fileName)
+                }
             }
         }
 
@@ -91,24 +91,44 @@ class AddExpense : AppCompatActivity() {
             filePickerLauncher.launch(intent)
         }
 
-        // Add Expense button click handler
+        val customCategoryEditText = findViewById<EditText>(R.id.editTextCustomCategory)
+        customCategoryEditText.visibility = View.GONE // Hide initially
+
+        // Spinner setup
+        val spinner: Spinner = findViewById(R.id.spinner2)
+        val spinnerAdapter = ArrayAdapter.createFromResource(
+            this, R.array.expense_categories, android.R.layout.simple_spinner_item
+        )
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = spinnerAdapter
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedCategory = parent?.getItemAtPosition(position).toString()
+                Toast.makeText(applicationContext, "Selected: $selectedCategory", Toast.LENGTH_SHORT).show()
+
+                // Show custom category input if "Other" selected
+                if (selectedCategory == "Other") {
+                    customCategoryEditText.visibility = View.VISIBLE
+                } else {
+                    customCategoryEditText.visibility = View.GONE
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+
         binding.button6.setOnClickListener {
             val title = binding.editTextText3.text.toString()
             val description = binding.editTextText4.text.toString()
             val amount = binding.editTextNumberDecimal.text.toString().toDoubleOrNull() ?: 0.0
             val date = binding.editTextDate.text.toString()
             val time = binding.editTextTime.text.toString()
-            val fileName = binding.textView19.text.toString()
             val selectedCategory = binding.spinner2.selectedItem?.toString() ?: "Other"
-            val customCategoryText = findViewById<EditText>(R.id.editTextCustomCategory).text.toString().trim()
+            val customCategoryText = customCategoryEditText.text.toString().trim()
 
-            if (date.isBlank()) {
-                Toast.makeText(this, "Please pick a date", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            if (time.isBlank()) {
-                Toast.makeText(this, "Please pick a time", Toast.LENGTH_SHORT).show()
+            if (date.isBlank() || time.isBlank()) {
+                Toast.makeText(this, "Please pick date and time", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -120,50 +140,40 @@ class AddExpense : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Get the month from the selected date (important!)
             val selectedMonth = getMonthFromDateString(date)
 
             lifecycleScope.launch(Dispatchers.IO) {
                 val budgetGoalDao = db.budgetGoalDao()
-
-                // Fetch the user's budget for the selected month
                 val userBudget = budgetGoalDao.getBudgetForUserAndMonth(userId, selectedMonth)
 
                 if (userBudget == null) {
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(this@AddExpense, "Please set your budget before adding expenses", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@AddExpense, "Please set your budget first", Toast.LENGTH_LONG).show()
                     }
                     return@launch
                 }
 
-                // Calculate total expenses for the user for the selected month
                 val totalExpenses = expenseDao.getTotalExpensesForUserAndMonth(userId, selectedMonth) ?: 0.0
-
-                // Check if adding this expense exceeds the budget
                 if ((totalExpenses + amount) > userBudget.maxGoal) {
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(this@AddExpense, "Expense exceeds your monthly budget", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@AddExpense, "Expense exceeds your budget", Toast.LENGTH_LONG).show()
                     }
                     return@launch
                 }
 
-                // Insert expense only if all checks pass
                 val categoryDao = db.categoryDao()
-                var categoryId: Int? = null
 
-                if (customCategoryText.isNotEmpty()) {
-                    val existing = categoryDao.getCategoryIdByNameAndUserId(customCategoryText, userId)
-                    categoryId = existing ?: categoryDao.insert(
-                        Category(category_name = customCategoryText, user_id = userId)
-                    ).toInt()
+                // Use custom category only if "Other" selected and text entered, else spinner category
+                val categoryName = if (selectedCategory == "Other" && customCategoryText.isNotEmpty()) {
+                    customCategoryText
                 } else {
-                    categoryId = categoryDao.getCategoryIdByNameAndUserId(selectedCategory, userId)
-                    if (categoryId == null) {
-                        categoryId = categoryDao.insert(
-                            Category(category_name = selectedCategory, user_id = userId)
-                        ).toInt()
-                    }
+                    selectedCategory
                 }
+
+                val existing = categoryDao.getCategoryIdByNameAndUserId(categoryName, userId)
+                val categoryId = existing ?: categoryDao.insert(
+                    Category(category_name = categoryName, user_id = userId)
+                ).toInt()
 
                 val expense = Expense(
                     title = title,
@@ -172,7 +182,7 @@ class AddExpense : AppCompatActivity() {
                     date = date,
                     startTime = time,
                     photoPath = capturedPhotoPath,
-                    filePath = if (fileName.isEmpty()) null else fileName,
+                    filePath = uploadedFilePath,
                     category_id = categoryId,
                     user_id = userId
                 )
@@ -186,27 +196,8 @@ class AddExpense : AppCompatActivity() {
             }
         }
 
-        val btnHome = findViewById<ImageButton>(R.id.imageButton19)
-        btnHome.setOnClickListener {
-            val intent = Intent(this, HomeScreen::class.java)
-            startActivity(intent)
-        }
-
-        // Spinner Setup
-        val spinner: Spinner = findViewById(R.id.spinner2)
-        val spinnerAdapter = ArrayAdapter.createFromResource(
-            this, R.array.expense_categories, android.R.layout.simple_spinner_item
-        )
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = spinnerAdapter
-
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val selectedCategory = parent?.getItemAtPosition(position).toString()
-                Toast.makeText(applicationContext, "Selected: $selectedCategory", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        findViewById<ImageButton>(R.id.imageButton19).setOnClickListener {
+            startActivity(Intent(this, HomeScreen::class.java))
         }
 
         val btnPickTime = findViewById<Button>(R.id.btnPickTime)
@@ -221,26 +212,13 @@ class AddExpense : AppCompatActivity() {
             TimePickerDialog(this, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
         }
 
-        editTextDate = findViewById<TextView>(R.id.editTextDate)
-        btnShowDatePicker = findViewById<Button>(R.id.btnShowDatePicker)
+        editTextDate = findViewById(R.id.editTextDate)
+        btnShowDatePicker = findViewById(R.id.btnShowDatePicker)
         btnShowDatePicker.setOnClickListener {
             showDatePicker()
         }
     }
 
-    // Helper: get month name from full date string (e.g., "2025/06/01" -> "June")
-    private fun getMonthFromDateString(dateStr: String): String {
-        return try {
-            val sdfInput = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
-            val date = sdfInput.parse(dateStr)
-            val monthFormat = SimpleDateFormat("MMMM", Locale.getDefault())
-            monthFormat.format(date ?: Calendar.getInstance().time)
-        } catch (e: Exception) {
-            getCurrentMonth() // fallback current month
-        }
-    }
-
-    // Save image to internal storage
     private fun saveImageToInternalStorage(bitmap: Bitmap): String {
         val filename = "IMG_${System.currentTimeMillis()}.jpg"
         val file = File(filesDir, filename)
@@ -250,13 +228,26 @@ class AddExpense : AppCompatActivity() {
         return file.absolutePath
     }
 
+    private fun saveSelectedFileToInternalStorage(uri: Uri, fileName: String): String? {
+        return try {
+            val inputStream: InputStream? = contentResolver.openInputStream(uri)
+            val file = File(filesDir, "UPLOAD_${System.currentTimeMillis()}_$fileName")
+            FileOutputStream(file).use { output ->
+                inputStream?.copyTo(output)
+            }
+            file.absolutePath
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
     private fun showDatePicker() {
-        val datePickerDialog = DatePickerDialog(this, { _, year, monthOfYear, dayOfMonth ->
+        val datePickerDialog = DatePickerDialog(this, { _, year, month, day ->
             val selectedDate = Calendar.getInstance()
-            selectedDate.set(year, monthOfYear, dayOfMonth)
-            val dateFormat = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
-            val formattedDate = dateFormat.format(selectedDate.time)
-            editTextDate.text = formattedDate
+            selectedDate.set(year, month, day)
+            val formatted = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(selectedDate.time)
+            editTextDate.text = formatted
         },
             calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH),
@@ -264,12 +255,22 @@ class AddExpense : AppCompatActivity() {
         datePickerDialog.show()
     }
 
+    private fun getMonthFromDateString(dateStr: String): String {
+        return try {
+            val sdfInput = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
+            val date = sdfInput.parse(dateStr)
+            val monthFormat = SimpleDateFormat("MMMM", Locale.getDefault())
+            monthFormat.format(date ?: Calendar.getInstance().time)
+        } catch (e: Exception) {
+            getCurrentMonth()
+        }
+    }
+
     private fun getCurrentMonth(): String {
         val monthFormat = SimpleDateFormat("MMMM", Locale.getDefault())
         return monthFormat.format(Calendar.getInstance().time)
     }
 
-    // Helper to get file name from Uri
     private fun getFileName(uri: Uri?): String {
         uri ?: return ""
         var result = ""
@@ -282,7 +283,7 @@ class AddExpense : AppCompatActivity() {
             }
         }
         if (result.isEmpty()) {
-            result = uri.lastPathSegment ?: ""
+            result = uri.lastPathSegment ?: "file"
         }
         return result
     }
