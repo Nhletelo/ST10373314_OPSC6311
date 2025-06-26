@@ -1,5 +1,3 @@
-![ic_coinwatch_logo](https://github.com/user-attachments/assets/b597b35e-7bcb-4545-87d4-f7cbe195d512)
-
 ## CoinWatch 
 
 **CoinWatch** is a user-friendly budgeting app designed to help individuals track their expenses, set financial goals, and maintain control over their spending habits. This app provides a comprehensive solution for managing finances with ease, allowing users to stay organized and on budget.
@@ -52,15 +50,7 @@
 
 
 
----
-Demonstration Videos 
----
 
-https://youtu.be/LNMmBSm__UU?feature=shared
-
----
-📄 License
-This project is open source and available under the MIT License.
 
 
 
