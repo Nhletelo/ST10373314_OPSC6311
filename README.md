@@ -4,6 +4,27 @@
 
 ---
 
+ Additional Feature(s)
+ 
+1. Access to nearby banks (Money, 2025)
+
+•	the app should have an interactive map: (Money, 2025)
+•	for users to be able to locate an ATM nearby (Money, 2025)
+•	the ATMs selected by the user should be within the radius of 5km
+•	if the ATM selected the user is beyond the range of 5km they should receive a notification "sorry but the ATM you have selected is not within the range"
+
+2. App Messaging for Support (Bozovic, 2025)
+
+•	Users should be able to directly message a built-in support system for financial guidance. (Bozovic, 2025)
+•	The message should include a detailed description of the help they need.
+•	Users must enter their email and phone number for follow-up communication.
+•	After clicking the "Send" button, a notification should appear saying:
+•	"Thank you for trusting CoinWatch We will assist you shortly."
+
+3 Explore for more
+
+•	the app should have an "explore more" button for more information about achieving their monthly goals and interactive challenges to keep users engaged.
+--
 ### Key Features
 
 * **Secure Sign Up & Login**
