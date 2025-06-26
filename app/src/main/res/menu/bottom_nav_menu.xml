@@ -7,10 +7,10 @@
     <item android:title="Add Expense"
         android:icon="@drawable/baseline_add_circle_24"
         android:id="@+id/expense"/>
-    <item android:title="History"
+    <item android:title="Transaction"
         android:icon="@drawable/history"
         android:id="@+id/transact"/>
-    <item android:title="Chart"
+    <item android:title="Pie Chart"
         android:icon="@drawable/pie_chart"
         android:id="@+id/areachart"/>
 </menu>

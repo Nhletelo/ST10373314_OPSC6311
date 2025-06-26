@@ -3,6 +3,16 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="selected_color">#FFDD00</color>
-    <color name="blue">#0446FD</color> <!-- Or any blue shade you want -->
+    <color name="blue">#0446FD</color>
+    <color name="capitec_button_bg">#005BAC</color>
+    <color name="capitec_button_text">#FFFFFF</color>
+    <color name="capitec_light_blue">#B3D7FF</color>
+    <color name="capitec_blue">#0077C8</color>
+    <color name="capitec_teal">#00BFA5</color>
+    <color name="capitec_purple">#6200EE</color>
+
+
+
+
 
 </resources>

@@ -5,6 +5,7 @@
     android:gravity="center_horizontal"
     android:padding="24dp">
 
+
     <TextView
         android:id="@+id/tvPoints"
         android:layout_width="wrap_content"
@@ -23,8 +24,8 @@
 
     <ImageView
         android:id="@+id/ivBadge"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
         android:contentDescription="Badge"
         android:src="@drawable/badge_none"
         android:layout_marginBottom="24dp" />
